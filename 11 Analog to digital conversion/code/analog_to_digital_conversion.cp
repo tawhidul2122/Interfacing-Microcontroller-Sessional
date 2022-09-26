@@ -1,27 +1,29 @@
-#line 1 "I:/Microcontroller lab practice/Analog to digital conversion/code/analog_to_digital_conversion.c"
+#line 1 "D:/4_2/Interfacing & Microcontroller/LapWork/MicroController/ProgramFile/Analog_To_Digital_Conversion.c"
 
- int valADC;
- char x[4];
+int valADC;
 
-void main() {
+char x[4];
+void main()
+{
+
+ UART1_Init(9600);
+
+ ADC_Init();
 
 
-UART1_INIT(9600);
+ while(1)
+ {
 
-ADC_init();
-
-while(1){
-
- valADC=ADC_Read(0);
+ valADC = ADC_Read(0);
 
  IntToStr(valADC,x);
 
- UART1_Write_Text("Analog value is=");
+ UART1_Write_Text("Analog value = ");
  UART1_Write_Text(x);
 
  strcpy(x,"");
  UART1_Write(13);
- delay_ms(1000);
-}
+ Delay_ms(1000);
 
+ }
 }

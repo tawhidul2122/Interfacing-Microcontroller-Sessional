@@ -1,24 +1,24 @@
 
 _main:
 
-;analog_to_digital_conversion.c,5 :: 		void main() {
-;analog_to_digital_conversion.c,8 :: 		UART1_INIT(9600);
+;Analog_To_Digital_Conversion.c,5 :: 		void main()
+;Analog_To_Digital_Conversion.c,8 :: 		UART1_Init(9600);
 	MOVLW      51
 	MOVWF      SPBRG+0
 	BSF        TXSTA+0, 2
 	CALL       _UART1_Init+0
-;analog_to_digital_conversion.c,10 :: 		ADC_init();
+;Analog_To_Digital_Conversion.c,10 :: 		ADC_Init();
 	CALL       _ADC_Init+0
-;analog_to_digital_conversion.c,12 :: 		while(1){
+;Analog_To_Digital_Conversion.c,13 :: 		while(1)
 L_main0:
-;analog_to_digital_conversion.c,14 :: 		valADC=ADC_Read(0);
+;Analog_To_Digital_Conversion.c,16 :: 		valADC = ADC_Read(0);
 	CLRF       FARG_ADC_Read_channel+0
 	CALL       _ADC_Read+0
 	MOVF       R0+0, 0
 	MOVWF      _valADC+0
 	MOVF       R0+1, 0
 	MOVWF      _valADC+1
-;analog_to_digital_conversion.c,16 :: 		IntToStr(valADC,x);
+;Analog_To_Digital_Conversion.c,18 :: 		IntToStr(valADC,x);
 	MOVF       R0+0, 0
 	MOVWF      FARG_IntToStr_input+0
 	MOVF       R0+1, 0
@@ -26,25 +26,25 @@ L_main0:
 	MOVLW      _x+0
 	MOVWF      FARG_IntToStr_output+0
 	CALL       _IntToStr+0
-;analog_to_digital_conversion.c,18 :: 		UART1_Write_Text("Analog value is=");
-	MOVLW      ?lstr1_analog_to_digital_conversion+0
+;Analog_To_Digital_Conversion.c,20 :: 		UART1_Write_Text("Analog value = ");
+	MOVLW      ?lstr1_Analog_To_Digital_Conversion+0
 	MOVWF      FARG_UART1_Write_Text_uart_text+0
 	CALL       _UART1_Write_Text+0
-;analog_to_digital_conversion.c,19 :: 		UART1_Write_Text(x);
+;Analog_To_Digital_Conversion.c,21 :: 		UART1_Write_Text(x);
 	MOVLW      _x+0
 	MOVWF      FARG_UART1_Write_Text_uart_text+0
 	CALL       _UART1_Write_Text+0
-;analog_to_digital_conversion.c,21 :: 		strcpy(x,"");
+;Analog_To_Digital_Conversion.c,23 :: 		strcpy(x,"");
 	MOVLW      _x+0
 	MOVWF      FARG_strcpy_to+0
-	MOVLW      ?lstr2_analog_to_digital_conversion+0
+	MOVLW      ?lstr2_Analog_To_Digital_Conversion+0
 	MOVWF      FARG_strcpy_from+0
 	CALL       _strcpy+0
-;analog_to_digital_conversion.c,22 :: 		UART1_Write(13);
+;Analog_To_Digital_Conversion.c,24 :: 		UART1_Write(13);
 	MOVLW      13
 	MOVWF      FARG_UART1_Write_data_+0
 	CALL       _UART1_Write+0
-;analog_to_digital_conversion.c,23 :: 		delay_ms(1000);
+;Analog_To_Digital_Conversion.c,25 :: 		Delay_ms(1000);
 	MOVLW      11
 	MOVWF      R11+0
 	MOVLW      38
@@ -60,9 +60,9 @@ L_main2:
 	GOTO       L_main2
 	NOP
 	NOP
-;analog_to_digital_conversion.c,24 :: 		}
+;Analog_To_Digital_Conversion.c,27 :: 		}
 	GOTO       L_main0
-;analog_to_digital_conversion.c,26 :: 		}
+;Analog_To_Digital_Conversion.c,28 :: 		}
 L_end_main:
 	GOTO       $+0
 ; end of _main
